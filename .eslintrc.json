@@ -2,7 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:import/recommended",
-    "plugin:import/warnings"
+    "plugin:import/warnings",
+    "prettier"
   ],
   "rules": {
     "import/order": [
@@ -12,6 +13,14 @@
           "order": "asc"
         }
       }
-    ]
+    ],
+    "no-console": "error",
+    "camelcase": ["error", { "properties": "never" }],
+    "semi": ["error", "never", { "beforeStatementContinuationChars": "never" }],
+    "semi-spacing": ["error", { "after": true, "before": false }],
+    "semi-style": ["error", "first"],
+    "no-extra-semi": "error",
+    "no-unexpected-multiline": "error",
+    "no-unreachable": "error"
   }
 }
