@@ -14,7 +14,7 @@
         }
       }
     ],
-    "no-console": "error",
+    // "no-console": "error",
     "camelcase": ["error", { "properties": "never" }],
     "semi": ["error", "never", { "beforeStatementContinuationChars": "never" }],
     "semi-spacing": ["error", { "after": true, "before": false }],
