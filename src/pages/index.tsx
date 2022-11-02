@@ -1,11 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { CheckBox } from '@/components/CheckBox'
 import { usePrefList } from '@/hooks/usePrefList'
 
 const Home: NextPage = () => {
-  const { getPrefList } = usePrefList()
+  const { loading, prefList, getPrefList } = usePrefList()
 
   useEffect(() => getPrefList(), [])
 
@@ -15,7 +15,15 @@ const Home: NextPage = () => {
         <title>タイトル</title>
       </Head>
 
-      <p>prefList</p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          {prefList.result.map((item, index) => (
+            <CheckBox key={index}>{item.prefName}</CheckBox>
+          ))}
+        </div>
+      )}
     </>
   )
 }

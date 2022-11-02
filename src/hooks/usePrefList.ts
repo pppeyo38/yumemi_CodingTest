@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react'
 import { PrefResponse } from '@/types/api/Pref'
 
 export const usePrefList = () => {
+  const [loading, setLoading] = useState<boolean>(true)
   const [prefList, setPrefList] = useState<PrefResponse>({} as PrefResponse)
 
   const getPrefList = useCallback(() => {
@@ -15,7 +16,10 @@ export const usePrefList = () => {
       )
       .then((res) => setPrefList(res.data))
       .catch(() => {})
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
-  return { prefList, getPrefList }
+  return { loading, prefList, getPrefList }
 }
