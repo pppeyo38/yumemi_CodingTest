@@ -1,9 +1,11 @@
+export type Data = {
+  year: number
+  value: number
+}
+
 type DataItem = {
   label: string
-  data: {
-    year: number
-    value: number
-  }[]
+  data: Data[]
 }
 
 type PopulationItem = {
