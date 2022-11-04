@@ -7,8 +7,8 @@ import { usePopulation } from '@/hooks/usePopulation'
 import { usePrefList } from '@/hooks/usePrefList'
 
 const Home: NextPage = () => {
-  const { loading, prefList, getPrefList } = usePrefList()
   const { resData, getPopulation } = usePopulation()
+  const { loading, prefList, getPrefList } = usePrefList()
 
   useEffect(() => getPrefList(), [])
 
@@ -26,12 +26,12 @@ const Home: NextPage = () => {
             {prefList.result.map((item, index) => (
               <CheckBox
                 key={index}
-                onChange={() => getPopulation(item.prefCode)}
+                onChange={() => getPopulation(item.prefCode, item.prefName)}
               >
                 {item.prefName}
               </CheckBox>
             ))}
-            <Chart />
+            <Chart resData={resData} />
           </div>
         </>
       )}

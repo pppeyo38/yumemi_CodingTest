@@ -15,5 +15,6 @@ type PopulationItem = {
 
 export type PopulaionResponse = {
   message: null
-  result: PopulationItem[]
+  result: PopulationItem
+  prefName?: string
 }
