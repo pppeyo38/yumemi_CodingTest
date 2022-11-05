@@ -8,16 +8,16 @@ export const usePopulation = () => {
     {} as PopulaionResponse,
   )
 
-  const getPopulation = useCallback((prefId: number, prefName: string) => {
+  const getPopulation = useCallback((prefCode: number, prefName: string) => {
     axios
       .get<PopulaionResponse>(
-        `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefId}`,
+        `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
         {
           headers: { 'x-api-key': process.env.NEXT_PUBLIC_API_KEY },
         },
       )
       .then((res) => {
-        setResData({ ...res.data, prefName: prefName })
+        setResData({ ...res.data, prefCode: prefCode, prefName: prefName })
       })
       .catch(() => {})
       .finally(() => {

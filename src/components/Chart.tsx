@@ -6,20 +6,22 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Line,
 } from 'recharts'
 import { useChart } from '@/hooks/useChart'
 import { PopulaionResponse } from '@/types/api/Population'
+import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
   resData: PopulaionResponse
+  checkedPrefs: PrefItem[]
 }
 
-export const Chart = ({ resData }: Props) => {
+export const Chart = ({ resData, checkedPrefs }: Props) => {
   const { populationData, setChartData } = useChart()
-  console.log(populationData)
 
   useEffect(() => {
-    if (!resData.prefName) return
+    if (!resData.prefName || !resData.prefCode) return
     setChartData(resData.prefName, resData.result.data[0].data)
   }, [resData])
 
@@ -40,6 +42,14 @@ export const Chart = ({ resData }: Props) => {
       <YAxis />
       <Tooltip />
       <Legend />
+      {checkedPrefs.map((item) => (
+        <Line
+          key={item.prefCode}
+          type='monotone'
+          dataKey={item.prefName}
+          stroke='#82ca9d'
+        />
+      ))}
     </LineChart>
   )
 }
