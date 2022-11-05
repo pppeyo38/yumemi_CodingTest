@@ -14,10 +14,10 @@ import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
   resData: PopulaionResponse
-  checkedPrefs: PrefItem[]
+  prefList: PrefItem[]
 }
 
-export const Chart = ({ resData, checkedPrefs }: Props) => {
+export const Chart = ({ resData, prefList }: Props) => {
   const { populationData, setChartData } = useChart()
 
   useEffect(() => {
@@ -42,14 +42,17 @@ export const Chart = ({ resData, checkedPrefs }: Props) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      {checkedPrefs.map((item) => (
-        <Line
-          key={item.prefCode}
-          type='monotone'
-          dataKey={item.prefName}
-          stroke='#82ca9d'
-        />
-      ))}
+      {prefList.map(
+        (item) =>
+          item.isChecked && (
+            <Line
+              key={item.prefCode}
+              type='monotone'
+              dataKey={item.prefName}
+              stroke='#82ca9d'
+            />
+          ),
+      )}
     </LineChart>
   )
 }

@@ -1,23 +1,25 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Chart } from '@/components/Chart'
 import { CheckBox } from '@/components/CheckBox'
 import { usePopulation } from '@/hooks/usePopulation'
 import { usePrefList } from '@/hooks/usePrefList'
-import { PrefItem } from '@/types/api/Pref'
 
 const Home: NextPage = () => {
   const { resData, getPopulation } = usePopulation()
-  const { loading, prefList, getPrefList } = usePrefList()
-  const [checkedPrefs, setCheckedPrefs] = useState<PrefItem[]>([])
+  const { loading, prefList, setPrefList, getPrefList } = usePrefList()
 
   const onCheckedBox = (checkPrefCode: number, checkPrefName: string) => {
-    getPopulation(checkPrefCode, checkPrefName)
-    setCheckedPrefs((prevState) => [
-      ...prevState,
-      { prefCode: checkPrefCode, prefName: checkPrefName },
-    ])
+    if (!prefList[checkPrefCode - 1].isChecked)
+      getPopulation(checkPrefCode, checkPrefName)
+    setPrefList((prevState) =>
+      prevState.map((obj) =>
+        obj.prefCode === checkPrefCode
+          ? { ...obj, isChecked: !obj.isChecked }
+          : obj,
+      ),
+    )
   }
 
   useEffect(() => getPrefList(), [])
@@ -33,15 +35,16 @@ const Home: NextPage = () => {
       ) : (
         <>
           <div>
-            {prefList.result.map((item, index) => (
+            {prefList.map((item, index) => (
               <CheckBox
                 key={index}
+                checked={item.isChecked}
                 onChange={() => onCheckedBox(item.prefCode, item.prefName)}
               >
                 {item.prefName}
               </CheckBox>
             ))}
-            <Chart resData={resData} checkedPrefs={checkedPrefs} />
+            <Chart resData={resData} prefList={prefList} />
           </div>
         </>
       )}
