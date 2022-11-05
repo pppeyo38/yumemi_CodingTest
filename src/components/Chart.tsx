@@ -8,7 +8,7 @@ import {
   Legend,
   Line,
 } from 'recharts'
-import { useChart } from '@/hooks/useChart'
+import { useChart, prefColor } from '@/hooks/useChart'
 import { PopulaionResponse } from '@/types/api/Population'
 import { PrefItem } from '@/types/api/Pref'
 
@@ -32,8 +32,8 @@ export const Chart = ({ resData, prefList }: Props) => {
       data={populationData}
       margin={{
         top: 5,
-        right: 30,
-        left: 20,
+        right: 50,
+        left: 50,
         bottom: 5,
       }}
     >
@@ -49,7 +49,7 @@ export const Chart = ({ resData, prefList }: Props) => {
               key={item.prefCode}
               type='monotone'
               dataKey={item.prefName}
-              stroke='#82ca9d'
+              stroke={prefColor[item.prefCode - 1]}
             />
           ),
       )}
