@@ -1,9 +1,11 @@
+export type Data = {
+  year: number
+  value: number
+}
+
 type DataItem = {
   label: string
-  data: {
-    year: number
-    value: number
-  }[]
+  data: Data[]
 }
 
 type PopulationItem = {
@@ -13,5 +15,7 @@ type PopulationItem = {
 
 export type PopulaionResponse = {
   message: null
-  result: PopulationItem[]
+  result: PopulationItem
+  prefCode?: number
+  prefName?: string
 }
