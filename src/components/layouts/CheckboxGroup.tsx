@@ -1,4 +1,6 @@
 import { CheckBox } from '@/components/elements/CheckBox'
+import { Heading } from '@/components/elements/Heading'
+import { HeadingWrap } from '@/styles/ShareStyle'
 import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
@@ -19,7 +21,10 @@ export const CheckboxGroup = ({ prefList, onCheckBox }: Props) => {
   ]
 
   return (
-    <>
+    <section>
+      <div css={HeadingWrap}>
+        <Heading>都道府県一覧</Heading>
+      </div>
       {prefList.map((prefItem, index) => (
         <>
           {regionList.map(
@@ -35,6 +40,6 @@ export const CheckboxGroup = ({ prefList, onCheckBox }: Props) => {
           </CheckBox>
         </>
       ))}
-    </>
+    </section>
   )
 }
