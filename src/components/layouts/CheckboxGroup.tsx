@@ -3,9 +3,10 @@ import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
   prefList: PrefItem[]
+  onCheckBox: (checkPrefCode: number, checkPrefName: string) => void
 }
 
-export const CheckboxGroup = ({ prefList }: Props) => {
+export const CheckboxGroup = ({ prefList, onCheckBox }: Props) => {
   const regionList = [
     { id: 0, region: '北海道地方' },
     { id: 1, region: '東北地方' },
@@ -28,7 +29,7 @@ export const CheckboxGroup = ({ prefList }: Props) => {
           <CheckBox
             key={index}
             checked={prefItem.isChecked}
-            onChange={() => console.log(prefItem.prefName)}
+            onChange={() => onCheckBox(prefItem.prefCode, prefItem.prefName)}
           >
             {prefItem.prefName}
           </CheckBox>

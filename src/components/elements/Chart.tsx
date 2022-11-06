@@ -13,11 +13,11 @@ import { PopulaionResponse } from '@/types/api/Population'
 import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
-  resData: PopulaionResponse
   prefList: PrefItem[]
+  resData: PopulaionResponse
 }
 
-export const Chart = ({ resData, prefList }: Props) => {
+export const Chart = ({ prefList, resData }: Props) => {
   const { populationData, setChartData } = useChart()
 
   useEffect(() => {
