@@ -1,7 +1,7 @@
 import { SetStateAction } from 'react'
 import { Chart } from '@/components/elements/Chart'
-import { CheckBox } from '@/components/elements/CheckBox'
 import { Title } from '@/components/elements/Title'
+import { CheckboxGroup } from '@/components/layouts/CheckboxGroup'
 import { PopulaionResponse } from '@/types/api/Population'
 import { PrefItem } from '@/types/api/Pref'
 
@@ -30,18 +30,10 @@ export const HomeLayout = (props: Props) => {
   return (
     <section>
       <Title>都道府県別の総人口推移グラフ</Title>
-      <div>
-        {prefList.map((item, index) => (
-          <CheckBox
-            key={index}
-            checked={item.isChecked}
-            onChange={() => onCheckedBox(item.prefCode, item.prefName)}
-          >
-            {item.prefName}
-          </CheckBox>
-        ))}
+      <section>
+        <CheckboxGroup prefList={prefList} />
         <Chart resData={resData} prefList={prefList} />
-      </div>
+      </section>
     </section>
   )
 }
