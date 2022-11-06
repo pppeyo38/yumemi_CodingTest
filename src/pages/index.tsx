@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { HomeLayout } from '@/components/layouts/HomeLayout'
-import { usePopulation } from '@/hooks/usePopulation'
-import { usePrefList } from '@/hooks/usePrefList'
+import { Title } from '@/components/elements/Title'
+import { DataBlockLayout } from '@/components/layouts/DataBlockLayout'
+import { useResasApi } from '@/hooks/useResasApi'
 
 const Home: NextPage = () => {
-  const { resData, getPopulation } = usePopulation()
-  const { loading, prefList, setPrefList, getPrefList } = usePrefList()
+  const { loading, prefList, resPopulationData, getPrefList, onCheckBox } =
+    useResasApi()
 
   useEffect(() => getPrefList(), [])
 
@@ -17,16 +17,18 @@ const Home: NextPage = () => {
         <title>都道府県別の総人口推移グラフ</title>
       </Head>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <HomeLayout
-          prefList={prefList}
-          resData={resData}
-          getPopulation={getPopulation}
-          setPrefList={setPrefList}
-        />
-      )}
+      <section>
+        <Title>都道府県別の総人口推移グラフ</Title>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <DataBlockLayout
+            prefList={prefList}
+            resPopulationData={resPopulationData}
+            onCheckBox={onCheckBox}
+          />
+        )}
+      </section>
     </>
   )
 }
