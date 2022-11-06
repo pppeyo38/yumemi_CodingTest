@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import {
   LineChart,
@@ -11,7 +10,7 @@ import {
 } from 'recharts'
 import { Heading } from '@/components/elements/Heading'
 import { useChart, prefColor } from '@/hooks/useChart'
-import { HeadingWrap } from '@/styles/ShareStyle'
+import { CardStyle, HeadingWrap } from '@/styles/ShareStyle'
 import { PopulaionResponse } from '@/types/api/Population'
 import { PrefItem } from '@/types/api/Pref'
 
@@ -29,7 +28,7 @@ export const Chart = ({ prefList, resData }: Props) => {
   }, [resData])
 
   return (
-    <section css={ChartCard}>
+    <section css={CardStyle}>
       <div css={HeadingWrap}>
         <Heading>総人口推移グラフ</Heading>
       </div>
@@ -74,11 +73,3 @@ export const Chart = ({ prefList, resData }: Props) => {
     </section>
   )
 }
-
-const ChartCard = css`
-  width: fit-content;
-  padding: 10px 0 15px;
-  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-radius: 4px;
-`
