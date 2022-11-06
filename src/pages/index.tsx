@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { Title } from '@/components/elements/Title'
-import { HomeLayout } from '@/components/layouts/HomeLayout'
+import { DataBlockLayout } from '@/components/layouts/DataBlockLayout'
 import { useResasApi } from '@/hooks/useResasApi'
 
 const Home: NextPage = () => {
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <HomeLayout
+          <DataBlockLayout
             prefList={prefList}
             resPopulationData={resPopulationData}
             onCheckBox={onCheckBox}

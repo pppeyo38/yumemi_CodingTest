@@ -10,13 +10,13 @@ type Props = {
   onCheckBox: (checkPrefCode: number, checkPrefName: string) => void
 }
 
-export const HomeLayout = (props: Props) => {
+export const DataBlockLayout = (props: Props) => {
   const { prefList, resPopulationData, onCheckBox } = props
 
   return (
-    <section>
+    <div>
       <CheckboxGroup prefList={prefList} onCheckBox={onCheckBox} />
       <Chart prefList={prefList} resData={resPopulationData} />
-    </section>
+    </div>
   )
 }
