@@ -10,6 +10,7 @@ export const Title = ({ children }: Props) => {
 }
 
 const TitleStyle = css`
+  color: #fff;
   font-size: 36px;
   font-weight: bold;
   text-align: center;

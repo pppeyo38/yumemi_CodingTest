@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { Header } from '@/components/elements/Header'
 import { Title } from '@/components/elements/Title'
 import { DataBlockLayout } from '@/components/layouts/DataBlockLayout'
 import { useResasApi } from '@/hooks/useResasApi'
@@ -18,7 +19,9 @@ const Home: NextPage = () => {
       </Head>
 
       <section>
-        <Title>都道府県別の総人口推移グラフ</Title>
+        <Header>
+          <Title>都道府県別の総人口推移グラフ</Title>
+        </Header>
         {loading ? (
           <p>Loading...</p>
         ) : (
