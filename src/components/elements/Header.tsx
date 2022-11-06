@@ -10,8 +10,8 @@ export const Header = ({ children }: Props) => {
 }
 
 const HeaderStyle = css`
-  width: 100vw;
-  padding: 12px 24px;
+  width: calc(100% - 24px);
+  padding: 12px;
   text-align: center;
   background-color: #38b2ac;
 `
