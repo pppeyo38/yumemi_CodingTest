@@ -8,6 +8,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Global
         styles={css`
           ${emotionReset}
+          body {
+            color: #414a53;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            line-height: 1.44;
+            letter-spacing: 0.03em;
+          }
         `}
       />
       <Component {...pageProps} />
