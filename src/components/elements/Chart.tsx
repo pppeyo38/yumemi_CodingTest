@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import {
   LineChart,
@@ -10,7 +11,6 @@ import {
 } from 'recharts'
 import { Heading } from '@/components/elements/Heading'
 import { useChart, prefColor } from '@/hooks/useChart'
-import { CardStyle, HeadingWrap } from '@/styles/ShareStyle'
 import { PopulaionResponse } from '@/types/api/Population'
 import { PrefItem } from '@/types/api/Pref'
 
@@ -28,48 +28,70 @@ export const Chart = ({ prefList, resData }: Props) => {
   }, [resData])
 
   return (
-    <section css={CardStyle}>
+    <section css={ChartBlock}>
       <div css={HeadingWrap}>
         <Heading>総人口推移グラフ</Heading>
       </div>
-      <LineChart
-        width={700}
-        height={400}
-        data={populationData}
-        margin={{
-          top: 5,
-          right: 50,
-          left: 50,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis
-          dataKey='year'
-          interval={0}
-          angle={-30}
-          dx={-10}
-          dy={5}
-          tick={{
-            fontSize: 14,
-          }}
-        />
-        <YAxis tickCount={8} domain={[0, 14000000]} />
-        <Tooltip />
-        <Legend height={20} iconSize={20} />
-        {prefList.map(
-          (item) =>
-            item.isChecked && (
-              <Line
-                key={item.prefCode}
-                type='monotone'
-                dataKey={item.prefName}
-                stroke={prefColor[item.prefCode - 1]}
-                strokeWidth={1.5}
-              />
-            ),
-        )}
-      </LineChart>
+      <div css={ChartWrap}>
+        <LineChart width={585} height={360} data={populationData}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis
+            dataKey='year'
+            interval={0}
+            angle={-30}
+            dx={-10}
+            dy={5}
+            tick={{
+              fontSize: 12,
+            }}
+          />
+          <YAxis
+            tickCount={8}
+            domain={[0, 14000000]}
+            tick={{
+              fontSize: 12,
+            }}
+          />
+          <Tooltip />
+          <Legend height={20} iconSize={20} />
+          {prefList.map(
+            (item) =>
+              item.isChecked && (
+                <Line
+                  key={item.prefCode}
+                  type='monotone'
+                  dataKey={item.prefName}
+                  stroke={prefColor[item.prefCode - 1]}
+                  strokeWidth={1.5}
+                />
+              ),
+          )}
+        </LineChart>
+      </div>
     </section>
   )
 }
+
+const ChartBlock = css`
+  width: fit-content;
+
+  @media screen and (max-width: 620px) {
+    width: 100%;
+  }
+`
+
+const HeadingWrap = css`
+  text-align: center;
+  margin: 30px 0 15px;
+`
+
+const ChartWrap = css`
+  width: fit-content;
+  margin: 0 auto;
+
+  @media screen and (max-width: 620px) {
+    width: auto;
+    padding: 0 30px;
+    overflow: scroll;
+  }
+`

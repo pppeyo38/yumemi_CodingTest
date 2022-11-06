@@ -11,6 +11,7 @@ export const Header = ({ children }: Props) => {
 
 const HeaderStyle = css`
   width: 100vw;
-  padding: 12px 0;
+  padding: 12px 24px;
+  text-align: center;
   background-color: #38b2ac;
 `

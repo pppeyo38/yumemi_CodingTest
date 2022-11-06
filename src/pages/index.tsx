@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
@@ -20,7 +21,9 @@ const Home: NextPage = () => {
 
       <section>
         <Header>
-          <Title>都道府県別の総人口推移グラフ</Title>
+          <Title>
+            都道府県別の<span css={NowrapStyle}>総人口推移グラフ</span>
+          </Title>
         </Header>
         {loading ? (
           <p>Loading...</p>
@@ -37,3 +40,7 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+const NowrapStyle = css`
+  white-space: nowrap;
+`

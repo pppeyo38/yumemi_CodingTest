@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import { CheckBox } from '@/components/elements/CheckBox'
 import { Heading } from '@/components/elements/Heading'
-import { CardStyle, HeadingWrap } from '@/styles/ShareStyle'
 import { PrefItem } from '@/types/api/Pref'
 
 type Props = {
@@ -49,12 +48,45 @@ export const CheckboxGroup = ({ prefList, onCheckBox }: Props) => {
   )
 }
 
+const CardStyle = css`
+  width: 500px;
+  height: 475px;
+  padding: 10px 0 15px;
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+
+  @media screen and (max-width: 1280px) {
+    width: 400px;
+    height: 375px;
+  }
+
+  @media screen and (max-width: 620px) {
+    width: 320px;
+    height: 295px;
+  }
+`
+
+const HeadingWrap = css`
+  display: grid;
+  height: 20%;
+  place-content: center;
+  text-align: center;
+`
+
 const regionStyle = css`
   margin: 16px 0 4px;
   font-size: 20px;
 `
 
 const ListInner = css`
-  margin: 10px 0;
-  padding: 0 40px;
+  height: calc(80% - 20px);
+  margin: 0 12px;
+  padding: 10px 20px;
+  overflow-y: scroll;
+
+  @media screen and (max-width: 620px) {
+    margin: 0 8px;
+    padding: 10px 16px;
+  }
 `
