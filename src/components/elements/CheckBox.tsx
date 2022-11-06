@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -8,9 +9,14 @@ type Props = {
 
 export const CheckBox = ({ children, checked, onChange }: Props) => {
   return (
-    <label>
+    <label css={LabelStyle}>
       <input type='checkbox' checked={checked} onChange={onChange} />
       <span>{children}</span>
     </label>
   )
 }
+
+const LabelStyle = css`
+  display: inline-block;
+  margin: 0 3px;
+`

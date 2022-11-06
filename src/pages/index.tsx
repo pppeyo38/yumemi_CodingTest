@@ -1,55 +1,46 @@
+import { css } from '@emotion/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { Chart } from '@/components/Chart'
-import { CheckBox } from '@/components/CheckBox'
-import { usePopulation } from '@/hooks/usePopulation'
-import { usePrefList } from '@/hooks/usePrefList'
+import { Header } from '@/components/elements/Header'
+import { Title } from '@/components/elements/Title'
+import { DataBlockLayout } from '@/components/layouts/DataBlockLayout'
+import { useResasApi } from '@/hooks/useResasApi'
 
 const Home: NextPage = () => {
-  const { resData, getPopulation } = usePopulation()
-  const { loading, prefList, setPrefList, getPrefList } = usePrefList()
-
-  const onCheckedBox = (checkPrefCode: number, checkPrefName: string) => {
-    if (!prefList[checkPrefCode - 1].isChecked)
-      getPopulation(checkPrefCode, checkPrefName)
-    setPrefList((prevState) =>
-      prevState.map((obj) =>
-        obj.prefCode === checkPrefCode
-          ? { ...obj, isChecked: !obj.isChecked }
-          : obj,
-      ),
-    )
-  }
+  const { loading, prefList, resPopulationData, getPrefList, onCheckBox } =
+    useResasApi()
 
   useEffect(() => getPrefList(), [])
 
   return (
     <>
       <Head>
-        <title>タイトル</title>
+        <title>都道府県別の総人口推移グラフ</title>
       </Head>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <div>
-            {prefList.map((item, index) => (
-              <CheckBox
-                key={index}
-                checked={item.isChecked}
-                onChange={() => onCheckedBox(item.prefCode, item.prefName)}
-              >
-                {item.prefName}
-              </CheckBox>
-            ))}
-            <Chart resData={resData} prefList={prefList} />
-          </div>
-        </>
-      )}
+      <section>
+        <Header>
+          <Title>
+            都道府県別の<span css={NowrapStyle}>総人口推移グラフ</span>
+          </Title>
+        </Header>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <DataBlockLayout
+            prefList={prefList}
+            resPopulationData={resPopulationData}
+            onCheckBox={onCheckBox}
+          />
+        )}
+      </section>
     </>
   )
 }
 
 export default Home
+
+const NowrapStyle = css`
+  white-space: nowrap;
+`
