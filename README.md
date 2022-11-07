@@ -4,7 +4,7 @@
 
 ## 🔗 リンク
 
-準備中…
+[yumemi-coding-test-amber.vercel.app/](https://yumemi-coding-test-amber.vercel.app/)
 
 ## 🛠 使用ツール
 
@@ -31,3 +31,8 @@ Next のページコンポーネントを入れる
 
 ページ全体で使用する共通タイプを入れる
 
+## 🎨 グラフラインの色について
+
+![都道府県イメージカラー](/prefColorjpgg '都道府県イメージカラー')
+
+47 都道府県の観光スポットや特産物から連想される色を、ラインの色に設定しました。
