@@ -33,6 +33,7 @@ export const Chart = ({ prefList, resData }: Props) => {
         <Heading>総人口推移グラフ</Heading>
       </div>
       <div css={ChartWrap}>
+        <span css={YAxisLabel}>人口数</span>
         <LineChart width={585} height={360} data={populationData}>
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis
@@ -53,7 +54,7 @@ export const Chart = ({ prefList, resData }: Props) => {
             }}
           />
           <Tooltip />
-          <Legend height={20} iconSize={20} />
+          <Legend iconSize={16} />
           {prefList.map(
             (item) =>
               item.isChecked && (
@@ -61,6 +62,7 @@ export const Chart = ({ prefList, resData }: Props) => {
                   key={item.prefCode}
                   type='monotone'
                   dataKey={item.prefName}
+                  unit='人'
                   stroke={prefColor[item.prefCode - 1]}
                   strokeWidth={1.5}
                 />
@@ -82,10 +84,11 @@ const ChartBlock = css`
 
 const HeadingWrap = css`
   text-align: center;
-  margin: 30px 0 15px;
+  margin: 30px 0 20px;
 `
 
 const ChartWrap = css`
+  position: relative;
   width: fit-content;
   margin: 0 auto;
 
@@ -94,4 +97,12 @@ const ChartWrap = css`
     padding: 0 30px;
     overflow: scroll;
   }
+`
+
+const YAxisLabel = css`
+  position: absolute;
+  top: -16px;
+  left: 26px;
+  font-size: 12px;
+  line-height: 1;
 `
