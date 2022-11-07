@@ -3,58 +3,58 @@ import { Data } from '@/types/api/Population'
 
 const initialData = [
   {
-    year: 1960,
+    year: '1960年',
   },
   {
-    year: 1965,
+    year: '1965年',
   },
   {
-    year: 1970,
+    year: '1970年',
   },
   {
-    year: 1975,
+    year: '1975年',
   },
   {
-    year: 1980,
+    year: '1980年',
   },
   {
-    year: 1985,
+    year: '1985年',
   },
   {
-    year: 1990,
+    year: '1990年',
   },
   {
-    year: 1995,
+    year: '1995年',
   },
   {
-    year: 2000,
+    year: '2000年',
   },
   {
-    year: 2005,
+    year: '2005年',
   },
   {
-    year: 2010,
+    year: '2010年',
   },
   {
-    year: 2015,
+    year: '2015年',
   },
   {
-    year: 2020,
+    year: '2020年',
   },
   {
-    year: 2025,
+    year: '2025年',
   },
   {
-    year: 2030,
+    year: '2030年',
   },
   {
-    year: 2035,
+    year: '2035年',
   },
   {
-    year: 2040,
+    year: '2040年',
   },
   {
-    year: 2045,
+    year: '2045年',
   },
 ]
 
